@@ -10,3 +10,16 @@ click==8.2.0
 blinker==1.9.0
 
 
+# Se usa formulários
+Flask-WTF==1.2.1
+WTForms==3.1.2
+
+# Se usa migrações de banco
+Flask-Migrate==4.0.7
+alembic==1.14.1
+
+# Se usa bcrypt para senhas
+bcrypt==4.2.0
+
+# Se usa email
+Flask-Mail==0.9.1
