@@ -1,8 +1,0 @@
-{
-  "build": {
-    "builder": "NIXPACKS"
-  },
-  "deploy": {
-    "startCommand": "gunicorn main:app -b 0.0.0.0:$PORT -w 4 --timeout 120"
-  }
-}
