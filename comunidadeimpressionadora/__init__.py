@@ -8,12 +8,21 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', '29cecf8afd6176f06bb3f55472d490d1')
 app.config['DEBUG'] = False 
-if os.getenv('DATABASE_URL'):
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
-    print("Usando DATABASE_URL do ambiente")
+
+# CORREÇÃO PARA POSTGRESQL NO RAILWAY
+database_url = os.getenv('DATABASE_URL')
+if database_url:
+    # Railway usa 'postgres://' mas SQLAlchemy precisa de 'postgresql://'
+    if database_url.startswith('postgres://'):
+        database_url = database_url.replace('postgres://', 'postgresql://', 1)
+    
+    app.config['SQLALCHEMY_DATABASE_URI'] = database_url
+    print("Usando PostgreSQL do Railway")
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///comunidade.db'
     print("Usando SQLite local")
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 @app.errorhandler(500)
 def internal_error(error):
@@ -39,6 +48,14 @@ try:
     print("LoginManager inicializado")
 except Exception as e:
     print(f"Erro no LoginManager: {e}")
+
+# Testar conexão com o banco
+try:
+    with app.app_context():
+        database.engine.connect()
+        print("✅ Conexão com o banco estabelecida com sucesso")
+except Exception as e:
+    print(f"❌ Erro na conexão com o banco: {e}")
 
 print("Importando rotas...")
 try:
