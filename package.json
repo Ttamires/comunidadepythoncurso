@@ -1,0 +1,7 @@
+{
+  "name": "comunidadeimpressionadora",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "gunicorn main:app -b 0.0.0.0:$PORT -w 4 --timeout 120"
+  }
+}
