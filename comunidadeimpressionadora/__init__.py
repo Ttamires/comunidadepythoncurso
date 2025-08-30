@@ -13,6 +13,10 @@ if os.getenv('DATABASE_URL'):
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///comunidade.db'
 
+@app.errorhandler(500)
+def internal_error(error):
+    return str(error), 500
+
 
 database = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
@@ -21,6 +25,7 @@ login_manager.login_view = 'login'
 login_manager.login_message_category = 'alert-info'
 
 from comunidadeimpressionadora import routes
+
 
 
 
