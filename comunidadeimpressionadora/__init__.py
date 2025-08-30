@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
@@ -18,4 +19,5 @@ login_manager.login_view = 'login'
 login_manager.login_message_category = 'alert-info'
 
 from comunidadeimpressionadora import routes
+
 
