@@ -145,4 +145,14 @@ def excluir_post(post_id):
         flash('Post excluido com sucesso', 'alert-danger')
         return redirect(url_for('home'))
     else:
+
         abort(403)
+
+
+@app.route('/health')
+def health_check():
+    return 'OK', 200
+
+@app.route('/test')
+def test_route():
+    return 'Teste funcionando!', 200
