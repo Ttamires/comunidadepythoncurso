@@ -14,5 +14,6 @@ Flask-Migrate==4.0.7
 alembic==1.14.1
 bcrypt==4.2.0
 Flask-Mail==0.9.1
-Flask-Bcrypt==1.0.1  # LINHA ADICIONADA - MUITO IMPORTANTE!
+Flask-Bcrypt==1.0.1
+Pillow==10.4.0  # LINHA ADICIONADA - Para manipulação de imagens
 
